@@ -1,4 +1,4 @@
-public class Person{
+public abstract class Person{
     public Person(){
 
     }
@@ -9,9 +9,7 @@ public class Person{
         this.name=name;
     }
 
-    public abstract void show(){
-        System.out.println("装扮的"+name);
-    }
+    public abstract void show();
 }
 
 public class Finery extends Person{
@@ -32,7 +30,7 @@ public class Finery extends Person{
 
 public class TShirts extends Finery{
     @Override
-    public Override void show(){
+    public void show(){
         System.out.println("大T恤");
         super.show();
     }
@@ -49,8 +47,13 @@ public class BigTrouser extends Finery{
 ...
 
 static void Main(String[] args){
-    Person xc=new Person("xc");
-
+    Person xc=new Person("xc") {
+			
+			@Override
+			public void show() {
+				System.out.println("xc准备装扮");
+			}
+		};
     Sneakers pqx=new Sneakers();
     BigTrouser kk=new BigTrouser();
     TShirts dtx=new TShirts();
