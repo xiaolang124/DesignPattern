@@ -1,94 +1,52 @@
-public abstract class Operation{
-    private double _numberA=0;
-    private double _numberB=0;
-
-    public double get_numberA(){
-        return _numberA;
-    }
-
-    public void set_numberA(double _numberA){
-        this._numberA=_numberA;
-    }
-
-    public double get_numberB(){
-        return _numberB;
-    }
-
-    public void set_numberB(double _numberB){
-        this._numberB=_numberB;
-    }
-
-    public abstract double getResult();
-}
-
-public class OperationAdd extends Operation{
-    @Override
-    public double getResult(){
-        double result=0;
-        result=get_numberA()+get_numberB();
-        return result;
-    }
-}
-
-public class OperationSub extends Operation{
-    @Override
-    public double getResult(){
-        double result=0;
-        result=get_numberA()-get_numberB();
-        return result;
-    }
-}
-
-public class OperationMul extends Operation{
-    @Override
-    public double getResult(){
-        double result=0;
-        result=get_numberA()*get_numberB();
-        return result;
-    }
-}
-
-public class OperationDiv extends Operation{
-    @Override
-    public double getResult(){
-        double result=0;
-        result=get_numberA()/get_numberB();
-        return result;
-    }
-}
-
-public interface IFactory{
-    public Operation CreateOperation();
-}
-
-
-class AddFactory extends IFactory{
-    public Operation CreateOperation(){
-        return new OperationAdd();
-    }
-}
-
-class SubFactory extends IFactory{
-    public Operation CreateOperation(){
-        return new OperationSub();
-    }
-}
-
-class MulFactory extends IFactory{
-    public Operation CreateOperation(){
-        return new OperationMul();
-    }
-}
-
-class DivFactory extends IFactory{
-    public Operation CreateOperation(){
-        return new OperationDiv();
-    }
-}
-
-
-IFactory operFactory=new AddFactory();
-Operation oper=oper.CreateOperation();
-oper.NumberA=1;
-oper.NumberB=2;
-double result=oper.GetResult();
+//抽象产品  
+abstract class Car{  
+    private String name;  
+      
+    public abstract void drive();  
+      
+    public String getName() {  
+        return name;  
+    }  
+    public void setName(String name) {  
+        this.name = name;  
+    }  
+}  
+//具体产品  
+class Benz extends Car{  
+    public void drive(){  
+        System.out.println(this.getName()+"----go-----------------------");  
+    }  
+}  
+class Bmw extends Car{  
+    public void drive(){  
+        System.out.println(this.getName()+"----go-----------------------");  
+    }  
+}  
+  
+  
+//抽象工厂  
+abstract class Driver{  
+    public abstract Car createCar(String car) throws Exception;  
+}  
+//具体工厂（每个具体工厂负责一个具体产品）  
+class BenzDriver extends Driver{  
+    public Car createCar(String car) throws Exception {  
+        return new Benz();  
+    }  
+}  
+class BmwDriver extends Driver{  
+    public Car createCar(String car) throws Exception {  
+        return new Bmw();  
+    }  
+}  
+  
+//老板  
+public class Boss{  
+  
+    public static void main(String[] args) throws Exception {  
+        Driver d = new BenzDriver();  
+        Car c = d.createCar("benz");   
+        c.setName("benz");  
+        c.drive();  
+    }  
+}  
