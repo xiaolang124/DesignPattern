@@ -1,7 +1,7 @@
 public interface GiveGift{
-    public void GiveDolls();
-    public void GiveFlowers();
-    public void GiveChocolate();
+    public void giveDolls();
+    public void giveFlowers();
+    public void giveChocolate();
 }
 
 public class Pursuit implements GiveGift{
@@ -15,15 +15,15 @@ public class Pursuit implements GiveGift{
         this.mm=mm;
     }
 
-    public void GiveDolls(){
+    public void giveDolls(){
         System.out.println(mm.name+" get dolls");
     }
 
-    public void GiveFlowers(){
+    public void giveFlowers(){
 
     }
 
-    public void GiveChocolate(){
+    public void giveChocolate(){
 
     }
 }
@@ -35,16 +35,16 @@ public Proxy extends Pursuit{
         gg=new Pursuit(mm);
     }
 
-    public void GiveDolls(){
-        gg.GiveDolls();
+    public void giveDolls(){
+        gg.giveDolls();
     }
 
-    public void GiveFlowers(){
-        gg.GiveFlowers();
+    public void giveFlowers(){
+        gg.giveFlowers();
     }
 
-    public void GiveChocolate(){
-        gg.GiveChocolate();
+    public void giveChocolate(){
+        gg.giveChocolate();
     }
 }
 
@@ -54,9 +54,8 @@ static void Main(string[] args){
 
     Proxy daili=new Proxy(mm);
 
-    daili.GiveDolls();
-    daili.GiveFlowers();
-    daili.GiveChocolate();
-
+    daili.giveDolls();
+    daili.giveFlowers();
+    daili.giveChocolate();
 
 }
