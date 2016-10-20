@@ -1,11 +1,11 @@
 public interface Strategy {
-    public void AlgorithmInterface();
+    public void algorithmInterface();
 }
 
 public class ConcreteStrategyA implements Strategy{
 
     @Override
-    public void AlgorithmInterface() {
+    public void algorithmInterface() {
         System.out.println("Strategy A");
     }
 }
@@ -13,7 +13,7 @@ public class ConcreteStrategyA implements Strategy{
 public class ConcreteStrategyB implements Strategy{
 
     @Override
-    public void AlgorithmInterface() {
+    public void algorithmInterface() {
         System.out.println("Strategy B");
     }
 }
@@ -21,7 +21,7 @@ public class ConcreteStrategyB implements Strategy{
 public class ConcreteStrategyC implements Strategy{
 
     @Override
-    public void AlgorithmInterface() {
+    public void algorithmInterface() {
         System.out.println("Strategy C");
     }
 }
@@ -33,8 +33,8 @@ public class Context{
         this.strategy=strategy;
     }
     
-    public void ContextInterface(){
-        strategy.AlgorithmInterface();
+    public void contextInterface(){
+        strategy.algorithmInterface();
     }
 }
 
@@ -43,12 +43,12 @@ public class Main {
     public static void main(String[] args) {
         Context context;
         context=new Context(new ConcreteStrategyA());
-        context.ContextInterface();
+        context.contextInterface();
 
         context=new Context(new ConcreteStrategyB());
-        context.ContextInterface();
+        context.contextInterface();
 
         context=new Context(new ConcreteStrategyC());
-        context.ContextInterface();
+        context.contextInterface();
     }
 }
