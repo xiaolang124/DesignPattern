@@ -30,7 +30,7 @@ public class OperationAdd extends Operation{
     }
 }
 
-public class OperationSubjectextends Operation{
+public class OperationSub extends Operation{
     @Override
     public double getResult(){
         double result=0;
@@ -58,33 +58,33 @@ public class OperationDiv extends Operation{
 }
 
 public interface IFactory {
-	Operation CreationOperation();
+	Operation creationOperation();
 }
 
 public class AddFactory implements IFactory{
 
-	public Operation CreationOperation() {
+	public Operation creationOperation() {
 		return new OperationAdd();
 	}
 }
 
 public class SubFactory implements IFactory{
 
-	public Operation CreationOperation() {
+	public Operation creationOperation() {
 		return new OperationSub();
 	}
 }
 
 public class MulFactory implements IFactory{
 
-	public Operation CreationOperation() {
+	public Operation creationOperation() {
 		return new OperationMul();
 	}
 }
 
 public class DivFactory implements IFactory{
 
-	public Operation CreationOperation() {
+	public Operation creationOperation() {
 		return new OperationDiv();
 	}
 
@@ -92,7 +92,7 @@ public class DivFactory implements IFactory{
 
 public static void main(String[] args) {
 	IFactory operFactory=new AddFactory();
-	Operation oper=operFactory.CreationOperation();
+	Operation oper=operFactory.creationOperation();
 	oper.set_numberA(1);
 	oper.set_numberB(2);
 	double result=oper.getResult();
@@ -100,7 +100,7 @@ public static void main(String[] args) {
 
 //对比简单工厂
 public class OperationFactory{
-    public static Operation CreationOperation(String operate){
+    public static Operation creationOperation(String operate){
         Operation oper=null;
         switch(operate){
             case "+":
@@ -122,7 +122,7 @@ public class OperationFactory{
 
 public static void main(String[] args) {
 	Operation oper;
-    oper=operFactory.CreationOperation("+");
+    oper=operFactory.creationOperation("+");
 	oper.set_numberA(1);
 	oper.set_numberB(2);
 	double result=oper.getResult();
