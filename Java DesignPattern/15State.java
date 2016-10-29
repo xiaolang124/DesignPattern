@@ -1,48 +1,47 @@
-public class Work{
-    private int hour;
-
-    public void setHour(int hour){
-        this.hour=hour;
-    }
-
-    public int getHour(){
-        return hour;
-    }
-
-    private boolean finish=false;
-
-    public void setFinish(boolean finish){
-        this.finish=finish;
-    }
-
-    public boolean getFinish(){
-        return finish;
-    }
-
-    public void WriteProgram(){
-        if(hour<12){
-            //
-        }else if(hour<13){
-            //
-        }else if(hour<17){
-            //
-        }else{
-            if(finish){
-                //
-            }else{
-                if(hour<21){
-                    //
-                }else{
-                    //
-                }
-            }
-        }
-    }
+public interface State {
+	public void handle(Context context);
 }
 
-static void Main(String[] args){
-    Work emergency=new Work();
-    emergency.setHour(9);
-    emergency.WriteProgram();
-    
+
+public class ConcreteStateA implements State{
+	@Override
+	public void handle(Context context) {
+		context.setState(new ConcreteStateB());
+	}
+}
+
+public class ConcreteStateB implements State {
+	@Override
+	public void handle(Context context) {
+		context.setState(new ConcreteStateA());
+	}
+}
+
+public class Context {
+	private State state;
+	
+	public Context(State state){
+		this.state=state;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+		System.out.println("state: "+state.toString());
+	}
+	
+	public void Request(){
+		state.handle(this);
+	}
+}
+
+public static void main(String[] args) {
+	Context context=new Context(new ConcreteStateA());
+		
+	context.Request();
+	context.Request();
+	context.Request();
 }
