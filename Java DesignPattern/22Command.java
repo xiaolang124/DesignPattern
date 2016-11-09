@@ -43,14 +43,26 @@ public class BakeMuttonCommand extends Command{
 }
 
 public class Waiter {
-	private Command command;
+	private List<Command> orders=new ArrayList<>();
 	
 	public void setOrder(Command command){
-		this.command=command;
+		if(command instanceof BakeChickenWingCommand){
+			System.out.println("服务员:没有鸡翅了");
+		}else{
+			orders.add(command);
+			System.out.println("增加订单，时间："+new Date());
+		}
+	}
+	
+	public void cancelOrder(Command command){
+		orders.remove(command);
+		System.out.println("取消订单，时间："+new Date());
 	}
 	
 	public void execute(){
-		command.executeCommand();
+		for(Command c:orders){
+			c.executeCommand();
+		}
 	}
 }
 
@@ -65,8 +77,7 @@ public class Test {
 		Waiter girl=new Waiter();
 		
 		girl.setOrder(bakeMuttonCommand1);
-		girl.execute();
-		girl.setOrder(bakeChickenCommand1);;
+
 		girl.execute();
 	}
 }
